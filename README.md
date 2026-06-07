@@ -4,12 +4,12 @@ Este proyecto es un analizador léxico, sintáctico y traductor construido con A
 
 - Instalación y Ejecución
 
-Para usar correctamente el analizador princial primero lo tendra que clonar en su maquina local utilizando el URL de GIT:
+Para usar correctamente el analizador princial primero lo tendra que clonar en su PC utilizando el URL de GIT:
 
 git clone https://github.com/pabloyacante/48942.git
 
 
-Luego tendra que navegar hasta la carpeta raiz del proyecto con cd "MiAnalizador" y debera instalar la dependencia oficial de ANTLR4 para JavaScript ejecutando:
+Luego tendra que navegar hasta la carpeta raiz del proyecto con cd "48942" y debera instalar la dependencia oficial de ANTLR4 para JavaScript ejecutando:
 
     . npm install
 
