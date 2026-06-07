@@ -1,0 +1,9 @@
+while (0) {
+    printf("Bucle_falso");
+}
+
+while (1) {
+    printf("Primer_mensaje");
+    printf("Segundo_mensaje");
+    break;
+}

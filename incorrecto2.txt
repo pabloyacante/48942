@@ -1,0 +1,3 @@
+while (2) {
+    print("Condicion_invalida_y_palabra_mal_escrita");
+}
