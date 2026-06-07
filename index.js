@@ -10,20 +10,20 @@ import CustomMiAnalizadorVisitor from './CustomMiAnalizadorVisitor.js';
 async function main() {
     let input;
 
-    // Intento leer la entrada desde el archivo input - en forma sincrónica.
+  
     try {
         input = fs.readFileSync('input.txt', 'utf8');
     } catch (err) {
-        // Si no es posible leer el archivo, solicitar la entrada del usuario por teclado
+      
         input = await leerCadena(); 
         console.log(input);
     }
 
-    // Proceso la entrada con el analizador para obtener el lexer
+
     let inputStream = CharStreams.fromString(input);
     let lexer = new MiAnalizadorLexer(inputStream);
 
-    // --- REQUISITO 2: Verificar y mostrar la Tabla de Tokens ---
+
     console.log("Verificando tokens generados por el lexer...");
     const tokens = lexer.getAllTokens();
     if (tokens.length === 0) {
@@ -38,19 +38,18 @@ async function main() {
 
     for (let token of tokens) {
         const tokenType = MiAnalizadorLexer.symbolicNames[token.type] || MiAnalizadorLexer.literalNames[token.type] || `UNKNOWN (${token.type})`;
-        const lexema = token.text.replace(/\n/g, '\\n').replace(/\r/g, '\\r'); // Limpiar saltos de línea para la tabla
+        const lexema = token.text.replace(/\n/g, '\\n').replace(/\r/g, '\\r'); 
         console.log(`| ${lexema.padEnd(14)} | ${tokenType.padEnd(30)}|`);
     }
     console.log("--------------------------------------------------");
 
-    // Vuelve a procesar la entrada porque getAllTokens() consume todos los tokens
+    
     inputStream = CharStreams.fromString(input);
     lexer = new MiAnalizadorLexer(inputStream);
     let tokenStream = new CommonTokenStream(lexer);
     let parser = new MiAnalizadorParser(tokenStream);
-    
-    // --- REQUISITO 1: Ejecutar el análisis ---
-    let tree = parser.programa(); // "programa" es el axioma principal de tu archivo .g4
+   
+    let tree = parser.programa(); 
 
     if (parser._syntaxErrors > 0) {
         console.error("\n Se encontraron errores de sintaxis en la entrada.");
@@ -61,7 +60,7 @@ async function main() {
         const cadena_tree = tree.toStringTree(parser.ruleNames);
         console.log(`\n Árbol de derivación:\n${cadena_tree}`);
 
-        // --- REQUISITO 4: Interpretación (Traducción y Ejecución) ---
+        
         const visitor = new CustomMiAnalizadorVisitor();
         const codigo_traducido = visitor.visit(tree);
 
@@ -72,7 +71,7 @@ async function main() {
 
         try {
             console.log("\n RESULTADO DE LA EJECUCIÓN (INTÉRPRETE):");
-            // Se ejecuta el string que generó el visitor como si fuera código JS real
+          
             eval(codigo_traducido);
         } catch (err) {
             console.error("\nError al ejecutar el código traducido: ", err);
