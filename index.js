@@ -56,7 +56,6 @@ async function main() {
     } else {
         console.log("\n Entrada válida.");
         
-        // --- REQUISITO 3: Mostrar el Árbol Sintáctico ---
         const cadena_tree = tree.toStringTree(parser.ruleNames);
         console.log(`\n Árbol de derivación:\n${cadena_tree}`);
 
@@ -93,5 +92,4 @@ function leerCadena() {
     });
 }
 
-// Ejecuta la función principal
 main();
